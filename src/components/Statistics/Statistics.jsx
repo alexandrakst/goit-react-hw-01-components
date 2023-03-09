@@ -1,24 +1,24 @@
 import PropTypes from 'prop-types';
+import { Container, List, ListItems } from './Statistics.styled'
 
-// console.log(data);
-
-export default function Statistics({ stats }) {
-  //console.log(stats);
-  return (
-    <section className="statistics">
-      <ul className="stat-list">
+export default function Statistics({ title, stats }) {
+  return ( 
+    <Container>
+      {title && <h2>{title}</h2>}
+      <List>
         {stats.map(statsItem => (
-          <li key={statsItem.id} className="item">
+          <ListItems key={statsItem.id}>
             <span className="label">{statsItem.label}</span>
             <span className="percentage">{statsItem.percentage}%</span>
-          </li>
+          </ListItems>
         ))}
-      </ul>
-    </section>
+      </List>
+    </Container>
   );
 }
 
 Statistics.propTypes = {
+  title: PropTypes.string,
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
